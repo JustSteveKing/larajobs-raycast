@@ -1,5 +1,6 @@
-import { Action, Color, Icon, List, ActionPanel } from "@raycast/api";
+import { Action, Icon, List, ActionPanel } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
+import axios from "axios";
 
 interface Tag {
   name: string;
