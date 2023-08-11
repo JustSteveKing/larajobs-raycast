@@ -1,5 +1,5 @@
-import { Action, Icon, List, ActionPanel } from "@raycast/api";
-import { useFetch } from "@raycast/utils";
+import { Action, ActionPanel, Icon, List } from "@raycast/api";
+import { getFavicon, useFetch } from "@raycast/utils";
 import axios from "axios";
 
 interface Tag {
@@ -20,7 +20,7 @@ interface Job {
 }
 
 export default function JobList() {
-  const { data: jobs, error } = useFetch<Job[]>("https://larajobs.com/api/jobs", fetchJobsFromEndpoint);
+  const { data: jobs, error } = useFetch<Job[]>("https://larajobs.com/api/jobs");
 
   if (error) {
     return <List isLoading={false} searchBarPlaceholder="Failed to load jobs."></List>;
@@ -36,25 +36,16 @@ export default function JobList() {
         <List.Item
           key={job.id}
           title={job.title}
+          icon={getFavicon(job.url)}
           subtitle={job.salary ?? `No salary info`}
-          accessories={[
-            { text: { value: job.organization }, icon: Icon.BankNote },
-          ]}
+          accessories={[{ text: { value: job.organization }, icon: Icon.BankNote }]}
           actions={
             <ActionPanel title={job.title}>
-            <Action.OpenInBrowser url={job.url} />
-          </ActionPanel>
+              <Action.OpenInBrowser url={job.url} />
+            </ActionPanel>
           }
         />
       ))}
     </List>
   );
-}
-
-async function fetchJobsFromEndpoint(url: string): Promise<Job[]> {
-  const response = await axios.get<Job[]>(url);
-  if (response.status !== 200) {
-    throw new Error(`Request failed with status code ${response.status}`);
-  }
-  return response.data;
 }

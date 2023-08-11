@@ -1,21 +1,28 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "larajobs-search",
-  "title": "LaraJobs Search",
+  "title": "Search LaraJobs",
   "description": "Search jobs on Larajobs",
-  "icon": "command-icon.png",
-  "author": "JustSteveKing",
+  "icon": "extension_icon.png",
+  "author": "Treblle",
   "categories": [
-    "Other"
+    "Other", "Web"
   ],
   "license": "MIT",
   "commands": [
     {
       "name": "index",
-      "title": "Larajobs",
-      "subtitle": "Search and open jobs from Larajobs right from Raycast.",
+      "title": "Search Larajobs",
+      "subtitle": "Search latest LaraJobs",
       "description": "Search and open jobs from Larajobs right from Raycast.",
       "mode": "view"
+    },
+    {
+      "name": "menu",
+      "title": "See Larajobs",
+      "subtitle": "See latest LaraJobs",
+      "description": "See and open jobs from Larajobs right from your menubar.",
+      "mode": "menu-bar"
     }
   ],
   "dependencies": {
